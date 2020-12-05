@@ -2,6 +2,7 @@ package view;
 
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 	public class Main extends PApplet{
 
@@ -12,9 +13,11 @@ import processing.core.PApplet;
 			
 		}
 		
+		PImage fondo;
 		
 		public void settings() {
-			size(700,500);
+			size(1250,680);
+			
 			
 		}
 		
@@ -27,8 +30,9 @@ import processing.core.PApplet;
 		
 		
 		public void draw() {
-			background(255);
-	
+			background(0);
+			image(fondo,0,0,1250,680);
+			
 		}
 		
 		public void keyPressed() {
