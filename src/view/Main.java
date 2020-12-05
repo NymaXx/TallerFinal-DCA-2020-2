@@ -16,6 +16,7 @@ import processing.core.PImage;
 		int screen;
 		PImage plantilla;
 		StartScreen st;
+		ResumeScreen res;
 		
 		public void settings() {
 			size(1250,680);
@@ -29,6 +30,7 @@ import processing.core.PImage;
 		new Thread(game).start();
 		
 		st = new StartScreen(this);
+		res= new ResumeScreen(this);
 		}
 		
 		
@@ -36,42 +38,40 @@ import processing.core.PImage;
 			background(0);
 			
 			// game.paint();
-		
 			
-			 
-			
-			textSize(20);
-			fill(255);
-			text("X"+ mouseX + "Y" + mouseY, mouseX, mouseY);
-			
-			
-			
-			
-			switch(screen) {
+		switch(screen) {
 			case 0:
 				st.paint();
 				
 				break;
 				
 			case 1:
+				
 				game.paint();
 				break;
 				
 			case 2:
 				
-				ellipse(50,50,50,50);
 				break;
 				
-			
-			
+			case 3:
+				
+				res.paint();
+				break;
 			}
+		
+		
+			
+			textSize(20);
+			fill(255);
+			text("X"+ mouseX + "Y" + mouseY, mouseX, mouseY);
 			
 		}
 		
 		public void mousePressed() {
 			switch(screen) {
 			case 0:
-				if(st.changeScreen()==1) {
+				if(st.changeScreen()!=0) {
 					screen=1;
 					
 					st.hide();
@@ -82,16 +82,22 @@ import processing.core.PImage;
 					
 					st.hide();
 				}
+				
 				break;
 				
 			case 1:
-				
+				screen=3;
 				
 				break;
 				
 			case 2:
 				break;
 				
+			case 3:
+				if(res.changeScreen()==0) {
+					screen=0;
+				}
+				break;
 			
 			
 			}

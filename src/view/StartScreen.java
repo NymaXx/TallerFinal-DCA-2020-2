@@ -36,31 +36,26 @@ public class StartScreen {
 		inputs[1] = "Date";
 
 		cp5.addTextfield(inputs[0]).setPosition(300,290).setSize(651, 49).setAutoClear(true).setColorValue(app.color(171,0,78))
-		.setColorActive(app.color(171,0,78)).setColorBackground(app.color(171,0,78)).setColorForeground(app.color(0,0,0,1))
+		.setColorActive(app.color(255)).setColorBackground(app.color(171,0,78)).setColorForeground(app.color(0,0,0,1))
 		.setColor(app.color(0)).setColorCursor(app.color(171,0,78));
 		
 		cp5.addTextfield(inputs[1]).setPosition(300,367).setSize(651, 49).setAutoClear(true).setColorValue(app.color(171,0,78))
-		.setColorActive(app.color(171,0,78)).setColorBackground(app.color(171,0,78)).setColorForeground(app.color(0,0,0,1))
+		.setColorActive(app.color(255)).setColorBackground(app.color(171,0,78)).setColorForeground(app.color(0,0,0,1))
 		.setColor(app.color(0)).setColorCursor(app.color(171,0,78));
-
-		
-		
 	}
 	
-	
-	public void hide() {
-		cp5.hide();
-	}
 	
 	public void registerUser() {
 		name=cp5.get(Textfield.class, "Name").getText();
 		date=cp5.get(Textfield.class, "Date").getText();
 	}
 	
+	
 	public void clearTextFields() {
 		cp5.get(Textfield.class, "Name").setText("");
 		cp5.get(Textfield.class, "Date").setText("");
 	}
+	
 	
 	public int changeScreen() {
 		int screen=0;
@@ -70,14 +65,18 @@ public class StartScreen {
 		}
 		
 		if(app.mouseX>447 && app.mouseX<803 &&app.mouseY>474 && app.mouseY<527) {
-			screen=2;
+			screen=2;	
 		}
 		
-		
 		return screen;
-		
 	}
-
+	
+	
+	public void hide() {
+		cp5.hide();
+	}
+	
+	
 
 	public String getName() {
 		return name;
