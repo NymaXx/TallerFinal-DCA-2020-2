@@ -11,17 +11,17 @@ public class GameScreen implements Runnable{
 	private int speed;
 	
 	
-	GameScreen(int posX, int speed, PApplet app){
+	public GameScreen(int posX, int speed, PApplet app){
 		posX=this.posX;
 		speed=this.speed;
 		app=this.app;
-		gameS = app.loadImage("../images/Recurso 2-20.jpg");
+		this.gameS = app.loadImage("../images/PlantillaTOTALGAME.png");      
 	
 	}
 	
 	
 	public void paint() {
-		app.image(gameS,this.posX,0);
+		app.image(this.gameS,this.posX,0);
 		
 	}
 	

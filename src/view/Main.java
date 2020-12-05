@@ -1,6 +1,7 @@
 package view;
 
 
+import model.GameScreen;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -13,7 +14,10 @@ import processing.core.PImage;
 			
 		}
 		
+		GameScreen game;
+		PImage img;
 		int screen;
+		PImage plantilla;
 		
 		public void settings() {
 			size(1250,680);
@@ -21,13 +25,17 @@ import processing.core.PImage;
 		
 		
 		public void setup() {
+		img = loadImage("../images/PlantillaTOTALGAME.png");
 		screen=0;
+		game= new GameScreen(0, 0, this);
+		new Thread(game).start();
 		}
 		
 		
 		public void draw() {
 			background(0);
-			
+			//image(img,-2800,0);
+			 game.paint();
 			
 			textSize(20);
 			fill(255);
@@ -38,7 +46,6 @@ import processing.core.PImage;
 			
 			switch(screen) {
 			case 0:
-				
 				break;
 				
 			case 1:
