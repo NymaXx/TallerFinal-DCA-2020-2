@@ -13,25 +13,21 @@ import processing.core.PImage;
 			
 		}
 		
-		PImage fondo;
+		PImage img;
 		
 		public void settings() {
 			size(1250,680);
-			
-			
 		}
 		
 		
 		public void setup() {
-			
-		
-			
+		img = loadImage("../images/Recurso 2-20.jpg");
 		}
 		
 		
 		public void draw() {
 			background(0);
-			image(fondo,0,0,1250,680);
+			image(img,0,0);
 			
 		}
 		
