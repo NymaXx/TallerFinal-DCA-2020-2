@@ -13,7 +13,7 @@ import processing.core.PImage;
 			
 		}
 		
-		PImage img;
+		int screen;
 		
 		public void settings() {
 			size(1250,680);
@@ -21,13 +21,35 @@ import processing.core.PImage;
 		
 		
 		public void setup() {
-		img = loadImage("../images/Recurso 2-20.jpg");
+		screen=0;
 		}
 		
 		
 		public void draw() {
 			background(0);
-			image(img,0,0);
+			
+			
+			textSize(20);
+			fill(255);
+			text("X"+ mouseX + "Y" + mouseY, mouseX, mouseY);
+			
+			
+			
+			
+			switch(screen) {
+			case 0:
+				
+				break;
+				
+			case 1:
+				break;
+				
+			case 2:
+				break;
+				
+			
+			
+			}
 			
 		}
 		
