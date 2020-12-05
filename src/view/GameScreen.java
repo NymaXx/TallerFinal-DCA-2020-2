@@ -1,9 +1,9 @@
-package model;
+package view;
 
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class GameScreen implements Runnable{
+public class GameScreen implements Runnable {
 
 	private PImage gameS;
 	private PApplet app;
@@ -12,9 +12,9 @@ public class GameScreen implements Runnable{
 	
 	
 	public GameScreen(int posX, int speed, PApplet app){
-		posX=this.posX;
-		speed=this.speed;
-		app=this.app;
+		this.posX=posX;
+		this.app=app;
+		this.speed=speed;
 		this.gameS = app.loadImage("../images/PlantillaTOTALGAME.png");      
 	
 	}

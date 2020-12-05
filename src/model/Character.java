@@ -14,18 +14,19 @@ public class Character implements Runnable{
 	private PApplet app;
 	
 	Character(int posX,int posY,int speedX,int speedY, int dir,PApplet app){
-		app= this.app;
-		posX=this.posX;
-		posY=this.posY;
-		speedX=this.speedX;
-		speedY=this.speedY;
-		dir=this.dir;
-		anie= app.loadImage("../images/anie_1.png");
+		this.posX=posX;
+		this.posY=posY;
+		this.speedX=speedX;
+		this.speedY=speedY;
+		this.dir=dir;
+		this.app=app;
+		
+		this.anie= app.loadImage("../images/anie_1.png");
 		
 	}
 	
 	public void paint() {
-		app.image(anie, 0,0);
+		app.image(this.anie, 0,0);
 		
 	}
 	
