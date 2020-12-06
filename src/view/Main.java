@@ -34,7 +34,7 @@ import processing.core.PImage;
 		 * 3 = Resume Screen
 		 */
 		
-		game= new GameScreen(0, 0, this);
+		game= new GameScreen(0, this);
 		new Thread(game).start();
 		st = new StartScreen(this);
 		res= new ResumeScreen(this);

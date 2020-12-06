@@ -1,5 +1,6 @@
 package view;
 
+import model.Plataform;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -12,10 +13,10 @@ public class GameScreen implements Runnable {
 	private Plataform [] plat;
 	
 	
-	public GameScreen(int posX, int speed, PApplet app){
+	public GameScreen(int posX, PApplet app){
 		this.posX=posX;
 		this.app=app;
-		this.speed=speed;
+		this.speed=3;
 		this.gameS = app.loadImage("../images/PlantillaTOTALGAME.png");      
 		this.plat = new Plataform[88];
 		
