@@ -1,5 +1,8 @@
 package view;
 
+import java.util.ArrayList;
+
+import model.BluePoint;
 import model.Plataform;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -11,6 +14,7 @@ public class GameScreen implements Runnable {
 	private int posX;
 	private int speed;
 	private Plataform [] plat;
+	private ArrayList<BluePoint> point;
 
 	
 	
@@ -114,6 +118,12 @@ public class GameScreen implements Runnable {
 		plat[87] = new Plataform(3255,651,207,29,app);
 		
 		
+		this.point = new ArrayList<BluePoint>();
+		
+		for(int i=0; i < 60; i++) {
+			BluePoint po = new BluePoint((int) app.random(0,3500),(int) app.random(0,650), 3,app);
+			point.add(po);
+		}
 	}
 	
 	
@@ -125,9 +135,16 @@ public class GameScreen implements Runnable {
 			p.paint();
 		}
 		
-		
+		for(int i=0; i < point.size(); i++) {
+			BluePoint po =point.get(i);
+			po.paint();
+		}
 		
 	}
+		
+		
+		
+	
 	
 	@Override
 	public void run() {
@@ -136,6 +153,66 @@ public class GameScreen implements Runnable {
 	
 	public void moveToleft() {
 		this.posX-=this.speed;
+	}
+
+
+	public PImage getGameS() {
+		return gameS;
+	}
+
+
+	public void setGameS(PImage gameS) {
+		this.gameS = gameS;
+	}
+
+
+	public PImage getT() {
+		return t;
+	}
+
+
+	public void setT(PImage t) {
+		this.t = t;
+	}
+
+
+	public int getPosX() {
+		return posX;
+	}
+
+
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+
+
+	public int getSpeed() {
+		return speed;
+	}
+
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
+
+	public Plataform[] getPlat() {
+		return plat;
+	}
+
+
+	public void setPlat(Plataform[] plat) {
+		this.plat = plat;
+	}
+
+
+	public ArrayList<BluePoint> getPoint() {
+		return point;
+	}
+
+
+	public void setPoint(ArrayList<BluePoint> point) {
+		this.point = point;
 	}
 	
 	
