@@ -3,7 +3,7 @@ package model;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Character implements Runnable{
+public class Charac implements Runnable{
 
 	private int posX;
 	private int posY;
@@ -13,7 +13,7 @@ public class Character implements Runnable{
 	private PImage anie;
 	private PApplet app;
 	
-	Character(int posX,int posY,int speedX,int speedY, int dir,PApplet app){
+	public Charac(int posX,int posY,int speedX,int speedY, int dir,PApplet app){
 		this.posX=posX;
 		this.posY=posY;
 		this.speedX=speedX;
@@ -26,13 +26,15 @@ public class Character implements Runnable{
 	}
 	
 	public void paint() {
-		app.image(this.anie, 0,0);
+		app.stroke(255);
+		app.image(this.anie, this.posX,this.posY);
 		
 	}
 	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		move();
 		
 	}
 	
@@ -52,9 +54,7 @@ public class Character implements Runnable{
 				break;
 				
 		 case PApplet.UP:
-			 break;
 			 
-		 case PApplet.DOWN:
 			 break;
 				
 		 }

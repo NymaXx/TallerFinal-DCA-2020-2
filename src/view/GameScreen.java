@@ -6,18 +6,21 @@ import processing.core.PImage;
 
 public class GameScreen implements Runnable {
 
-	private PImage gameS;
+	private PImage gameS, t;
 	private PApplet app;
 	private int posX;
 	private int speed;
 	private Plataform [] plat;
+
 	
 	
 	public GameScreen(int posX, PApplet app){
+	
 		this.posX=posX;
 		this.app=app;
 		this.speed=3;
-		this.gameS = app.loadImage("../images/PlantillaTOTALGAME.png");      
+		this.gameS = app.loadImage("../images/PlantillaTOTALGAME.png"); 
+		this.t= app.loadImage("../images/TEXTS.png");
 		this.plat = new Plataform[88];
 		
 		/*iniciar plataformas porque no se como iniciarlas de otra manera */
@@ -115,6 +118,7 @@ public class GameScreen implements Runnable {
 	
 	
 	public void paint() {
+		app.image(this.t, 0,0);
 		//app.image(this.gameS,this.posX,0);
 		for(int i=0; i < plat.length; i++) {
 			Plataform p=plat[i];

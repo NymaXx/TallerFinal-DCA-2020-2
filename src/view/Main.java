@@ -1,4 +1,5 @@
 package view;
+import model.Charac;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -17,6 +18,7 @@ import processing.core.PImage;
 		PImage plantilla;
 		StartScreen st;
 		ResumeScreen res;
+		 Charac c;
 		
 		public void settings() {
 			size(1250,680);
@@ -38,6 +40,7 @@ import processing.core.PImage;
 		new Thread(game).start();
 		st = new StartScreen(this);
 		res= new ResumeScreen(this);
+		c = new Charac(0, height-109, 0,0, 1, this);
 		}
 		
 		
@@ -45,6 +48,7 @@ import processing.core.PImage;
 			background(0);
 			st.getCp5().hide();
 			// game.paint();
+			
 			
 		switch(screen) {
 			case 0:
@@ -57,7 +61,7 @@ import processing.core.PImage;
 			case 1:
 				
 				game.paint();
-				
+				c.paint();
 				
 				break;
 				
