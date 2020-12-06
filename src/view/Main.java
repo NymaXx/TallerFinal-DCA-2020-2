@@ -40,7 +40,7 @@ import processing.core.PImage;
 		new Thread(game).start();
 		st = new StartScreen(this);
 		res= new ResumeScreen(this);
-		c = new Charac(0, height-109, 0,0, 1, this);
+		c = new Charac(0, height-86, 6,10, 54,60, this);
 		}
 		
 		
@@ -113,5 +113,8 @@ import processing.core.PImage;
 		
 		public void keyPressed() {
 			
+			if(screen ==1) {
+				c.move();
+			}
 		}
 	}

@@ -9,19 +9,23 @@ public class Charac implements Runnable{
 	private int posY;
 	private int speedX;
 	private int speedY;
+	private int speedCaid;
+	private int w;
+	private int h;
 	private int dir;
 	private PImage anie;
 	private PApplet app;
 	
-	public Charac(int posX,int posY,int speedX,int speedY, int dir,PApplet app){
+	public Charac(int posX,int posY,int speedX,int speedY, int w, int h,PApplet app){
 		this.posX=posX;
 		this.posY=posY;
 		this.speedX=speedX;
 		this.speedY=speedY;
-		this.dir=dir;
+		this.dir=1;
 		this.app=app;
+		this.speedCaid=15;
 		
-		this.anie= app.loadImage("../images/anie_1.png");
+		this.anie= app.loadImage("../images/AnnIE.png");
 		
 	}
 	
@@ -29,6 +33,10 @@ public class Charac implements Runnable{
 		app.stroke(255);
 		app.image(this.anie, this.posX,this.posY);
 		
+		if(this.posY <= app.height-95 && !app.keyPressed) {
+		this.dir=1;
+		this.posY= this.posY+this.speedY*this.dir;
+		}
 	}
 	
 	@Override
@@ -39,25 +47,32 @@ public class Charac implements Runnable{
 	}
 	
 	public void move() {
+		
+		
 		 switch(app.keyCode) {
 		 
 		 case PApplet.LEFT:
-		 if(this.posX > 30 && this.posX <= 770) {
+		 if(app.keyPressed && this.posX > 0) {
 				this.posX-=this.speedX;
 				}
 		 break;
 		 
 		 case PApplet.RIGHT:
-				if(this.posX >= 30 && this.posX < 770) {
+				if(app.keyPressed && this.posX < app.width*3/4) {
 					this.posX+=this.speedX;
 					}
-				break;
-				
-		 case PApplet.UP:
-			 
-			 break;
-				
+				break;	
 		 }
+		 
+		 if(app.keyPressed && app.keyCode==PApplet.UP) {
+			 this.dir=-1;
+			 this.posY= this.posY+this.speedY*this.dir;
+		 }
+		/*if(!app.keyPressed) {
+				 this.dir=1;
+			 }*/
+	
+		 
 	 }
 	
 	
