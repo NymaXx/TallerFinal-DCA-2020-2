@@ -36,11 +36,13 @@ import processing.core.PImage;
 		
 		public void draw() {
 			background(0);
-			
+			st.getCp5().hide();
 			// game.paint();
 			
 		switch(screen) {
 			case 0:
+				
+				st.getCp5().show();
 				st.paint();
 				
 				break;
@@ -48,15 +50,19 @@ import processing.core.PImage;
 			case 1:
 				
 				game.paint();
+				
+				
 				break;
 				
 			case 2:
-				
+				ellipse(50,50,50,50);
 				break;
 				
 			case 3:
 				
 				res.paint();
+				
+				
 				break;
 			}
 		
@@ -71,16 +77,16 @@ import processing.core.PImage;
 		public void mousePressed() {
 			switch(screen) {
 			case 0:
-				if(st.changeScreen()!=0) {
+				if(st.changeScreen()==1) {
 					screen=1;
 					
-					st.hide();
+					
 				}
 				
 				if(st.changeScreen()==2) {
 					screen=2;
 					
-					st.hide();
+					
 				}
 				
 				break;

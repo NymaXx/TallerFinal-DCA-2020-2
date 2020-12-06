@@ -17,6 +17,8 @@ public class ResumeScreen {
 		this.res = app.loadImage("../images/resume-20.jpg");
 		
 		this.start = new StartScreen(app);
+		start.getCp5().hide();
+		
 		
 		
 	}

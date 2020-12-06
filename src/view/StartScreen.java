@@ -22,12 +22,13 @@ public class StartScreen {
 		
 		cp5 = new ControlP5(app);
 		inputs = new String[2];
-		cp5.show();
+		
 		initializeTextFields();
 	}
 	
 	
 	public void paint() {
+		
 		app.image(this.start,0,0);
 	}
 	
@@ -44,10 +45,16 @@ public class StartScreen {
 		.setColor(app.color(0)).setColorCursor(app.color(171,0,78));
 	}
 	
+	public void hide() {
+		cp5.hide();
+		
+	}
+	
 	
 	public void registerUser() {
 		name=cp5.get(Textfield.class, "Name").getText();
 		date=cp5.get(Textfield.class, "Date").getText();
+		
 	}
 	
 	
@@ -62,19 +69,19 @@ public class StartScreen {
 		
 		if(app.mouseX>508 && app.mouseX<741 &&app.mouseY>550 && app.mouseY<598) {
 			screen=1;
+			//registerUser();
+			;
 		}
 		
 		if(app.mouseX>447 && app.mouseX<803 &&app.mouseY>474 && app.mouseY<527) {
 			screen=2;	
+			//registerUser();
 		}
 		
 		return screen;
 	}
 	
 	
-	public void hide() {
-		cp5.hide();
-	}
 	
 	
 
