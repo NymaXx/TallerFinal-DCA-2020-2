@@ -15,6 +15,7 @@ public class Charac implements Runnable{
 	private int dir;
 	private PImage anie;
 	private PApplet app;
+	private Boolean isCollide;
 	
 	public Charac(int posX,int posY,int speedX,int speedY, int w, int h,PApplet app){
 		this.posX=posX;
@@ -24,6 +25,7 @@ public class Charac implements Runnable{
 		this.dir=1;
 		this.app=app;
 		this.speedCaid=15;
+		this.isCollide=true;
 		
 		this.anie= app.loadImage("../images/AnnIE.png");
 		
@@ -33,7 +35,7 @@ public class Charac implements Runnable{
 		app.stroke(255);
 		app.image(this.anie, this.posX,this.posY);
 		
-		if(this.posY <= app.height-95 && !app.keyPressed) {
+		if(this.posY <= app.height-95 && !app.keyPressed && this.isCollide==true) {
 		this.dir=1;
 		this.posY= this.posY+this.speedY*this.dir;
 		}
@@ -41,32 +43,34 @@ public class Charac implements Runnable{
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		move();
 		
-	}
-	
-	public void move() {
-		
-		
-		 switch(app.keyCode) {
+		switch(app.keyCode) {
 		 
 		 case PApplet.LEFT:
-		 if(app.keyPressed && this.posX > 0) {
+		 if(app.keyPressed && this.posX > 0 ) {
 				this.posX-=this.speedX;
+				if(this.posY <= app.height-95 && this.isCollide==true) {
+				this.dir=1;
+				this.posY= this.posY+this.speedY*this.dir;
+				}
+				
 				}
 		 break;
 		 
 		 case PApplet.RIGHT:
-				if(app.keyPressed && this.posX < app.width*3/4) {
+				if(app.keyPressed && this.posX < app.width*3/4 ) {      
 					this.posX+=this.speedX;
+					if(this.posY <= app.height-95 && this.isCollide==true) {
+						this.dir=1;
+						this.posY= this.posY+this.speedY*this.dir;
+						}
 					}
 				break;	
 		 }
 		 
 		 if(app.keyPressed && app.keyCode==PApplet.UP) {
 			 this.dir=-1;
-			 this.posY= this.posY+this.speedY*this.dir;
+			 this.posY= this.posY + 100 * this.dir;
 		 }
 		/*if(!app.keyPressed) {
 				 this.dir=1;

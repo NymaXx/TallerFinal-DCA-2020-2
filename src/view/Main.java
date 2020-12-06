@@ -114,7 +114,7 @@ import processing.core.PImage;
 		public void keyPressed() {
 			
 			if(screen ==1) {
-				c.move();
+				new Thread(c).start();
 			}
 		}
 	}
