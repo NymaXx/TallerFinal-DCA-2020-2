@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 import view.GameScreen;
 import view.InstScreen;
 import view.ResumeScreen;
@@ -20,31 +21,36 @@ public class Logic implements Runnable{
 	private InstScreen is;
 	private PApplet app;
 	public int screen;
+	private PImage t;
+	private int timeCounter;
+	private int pointCounter;
 	
 	
 	public Logic(PApplet app) {
 		 screen=0;
+		 this.timeCounter=120;
+		 this.pointCounter=0;
+		 this.t= app.loadImage("../images/TEXTS.png");
 		 this.app=app;
 		 c = new Charac(0, app.height-86, 6,10, 54,60, app);
 		 gs = new GameScreen(0, app);
-		 	new Thread(gs).start();
+		 	  new Thread(gs).start();
 		 ss = new StartScreen(app);
 		 rs = new ResumeScreen(app);
 		 is = new InstScreen(app);
 	
 		 b = new ArrayList<BluePoint>();
 			//inicializar puntos aleatorios
-			for(int i=0; i < 60; i++) {
+			for(int i=0; i < 50; i++) {
 				BluePoint po = new BluePoint((int) app.random(60,3500),(int) app.random(50,610), 3,app);
 				b.add(po);
 			}
 			
 		e = new ArrayList<Enemy>();
 			//inicializar enemigos aleatorios
-			for(int i=0; i < 60; i++) {
+			for(int i=0; i < 40; i++) {
 				Enemy en = new Enemy((int) app.random(60,3500),(int) app.random(50,610), 30 , 30,app);
 				e.add(en);
-				new Thread(en).start();
 			}
 			
 		 p = new Plataform[88];
@@ -144,20 +150,16 @@ public class Logic implements Runnable{
 	public void paint() {
 		
 		for(int i=0; i < p.length; i++) {
-			Plataform pl= p[i];
-			pl.paint();
+			p[i].paint();
 		}
 		
 		for(int i=0; i < b.size(); i++) {
-			BluePoint bl =b.get(i);
-			bl.paint();
+			b.get(i).paint();
 		}
 		
 		for(int i=0; i < e.size(); i++) {
-			Enemy en =e.get(i);
-			en.paint();
-			new Thread(en).start();
-			//en.RandomMove();
+			e.get(i).paint();
+			new Thread(e.get(i)).start();
 		}
 	}
 	
@@ -174,8 +176,13 @@ public class Logic implements Runnable{
 		case 1:
 			
 			gs.paint();
+			app.image(this.t, 0,0);
 			c.paint();
 			paint();
+			
+			app.text(""+ this.pointCounter, 114,30);
+			app.text(""+ this.timeCounter, 279,30);
+			
 			break;
 			
 		case 2: 

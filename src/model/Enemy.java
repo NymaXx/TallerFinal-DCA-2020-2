@@ -29,13 +29,6 @@ public class Enemy implements Runnable{
 		
 	}
 	
-	public void RandomMove() {
-		    this.posX += (int)app.random(-5, 5);
-		    this.posY += (int) app.random(-5, 5);
-		    
-		  
-	}
-	
 	public void moveR() {
 		this.posX+=this.speed;
 	}

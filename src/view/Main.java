@@ -51,6 +51,7 @@ import processing.core.PImage;
 				}
 			
 			l.paintScreen();
+			new Thread(l).start();
 			
 			
 
