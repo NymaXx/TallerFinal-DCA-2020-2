@@ -70,16 +70,16 @@ public class Charac implements Runnable{
 		 
 		 if(app.keyPressed && app.keyCode==PApplet.UP) {
 			 this.dir=-1;
-			 this.posY= this.posY + 100 * this.dir;
+			 this.posY= this.posY + 15 * this.dir;
 		 }
+		 
+		 
 		/*if(!app.keyPressed) {
 				 this.dir=1;
 			 }*/
 	
 		 
 	 }
-	
-	
 	
 
 	public int getPosX() {
@@ -129,6 +129,30 @@ public class Charac implements Runnable{
 
 	public void setSpeedY(int speedY) {
 		this.speedY = speedY;
+	}
+
+	public int getW() {
+		return w;
+	}
+
+	public void setW(int w) {
+		this.w = w;
+	}
+
+	public int getH() {
+		return h;
+	}
+
+	public void setH(int h) {
+		this.h = h;
+	}
+
+	public Boolean getIsCollide() {
+		return isCollide;
+	}
+
+	public void setIsCollide(Boolean isCollide) {
+		this.isCollide = isCollide;
 	}
 	
 	

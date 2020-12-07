@@ -32,7 +32,7 @@ public class Logic implements Runnable{
 		 this.pointCounter=0;
 		 this.t= app.loadImage("../images/TEXTS.png");
 		 this.app=app;
-		 c = new Charac(0, app.height-86, 6,10, 54,60, app);
+		 c = new Charac(0, 200, 20,19, 54,60, app);
 		 gs = new GameScreen(0, app);
 		 	  new Thread(gs).start();
 		 ss = new StartScreen(app);
@@ -51,6 +51,7 @@ public class Logic implements Runnable{
 			for(int i=0; i < 40; i++) {
 				Enemy en = new Enemy((int) app.random(60,3500),(int) app.random(50,610), 30 , 30,app);
 				e.add(en);
+				//new Thread(e.get(i)).start();
 			}
 			
 		 p = new Plataform[88];
@@ -147,7 +148,7 @@ public class Logic implements Runnable{
 	}
 	
 	
-	public void paint() {
+	public void paintElements() {
 		
 		for(int i=0; i < p.length; i++) {
 			p[i].paint();
@@ -162,6 +163,7 @@ public class Logic implements Runnable{
 			new Thread(e.get(i)).start();
 		}
 	}
+	
 	
 	public int paintScreen() {
 		ss.getCp5().hide();
@@ -178,7 +180,8 @@ public class Logic implements Runnable{
 			gs.paint();
 			app.image(this.t, 0,0);
 			c.paint();
-			paint();
+			new Thread(c).start();
+			paintElements();
 			
 			app.text(""+ this.pointCounter, 114,30);
 			app.text(""+ this.timeCounter, 279,30);
@@ -202,9 +205,9 @@ public class Logic implements Runnable{
 	public void run() { //para los movimientos de todo
 		
 			for(int a =0; a < p.length; a++) {
-				//if(x1 > x2+w2 || x1+w1 < x2 || y1 > y2+h2 || y1+h1 < y2) {
+			/*	if(x1 > x2+w2 || x1+w1 < x2 || y1 > y2+h2 || y1+h1 < y2) {
 					
-				//}
+				}*/
 			}
 		
 		

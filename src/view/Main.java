@@ -31,14 +31,15 @@ import processing.core.PImage;
 		public void setup() {
 		img = loadImage("../images/PlantillaTOTALGAME.png");
 		screen=0;
-		l = new Logic(this);
-		
 		/* screen:
 		 * 0 = Start-Login Screen
 		 * 1 = Game screen
 		 * 2 = instructions Screen
 		 * 3 = Resume Screen
 		 */
+		l = new Logic(this);
+		new Thread(l).start();
+		
 		st = new StartScreen(this);
 		}
 		
@@ -49,9 +50,8 @@ import processing.core.PImage;
 			if(screen != 0) {
 				st.getCp5().hide();
 				}
-			
 			l.paintScreen();
-			new Thread(l).start();
+			
 			
 			
 
@@ -93,8 +93,5 @@ import processing.core.PImage;
 		
 		public void keyPressed() {
 			
-			if(screen ==1) {
-				new Thread(c).start();
-			}
 		}
 	}
