@@ -49,6 +49,7 @@ import processing.core.PImage;
 			if(screen != 0) {
 				st.getCp5().hide();
 				}
+			
 			l.paintScreen();
 			
 			
@@ -86,6 +87,8 @@ import processing.core.PImage;
 				break;
 			}
 		}
+		
+		
 		
 		public void keyPressed() {
 			

@@ -42,8 +42,9 @@ public class Logic implements Runnable{
 		e = new ArrayList<Enemy>();
 			//inicializar enemigos aleatorios
 			for(int i=0; i < 60; i++) {
-				Enemy en = new Enemy((int) app.random(60,3500),(int) app.random(50,610),app);
+				Enemy en = new Enemy((int) app.random(60,3500),(int) app.random(50,610), 30 , 30,app);
 				e.add(en);
+				new Thread(en).start();
 			}
 			
 		 p = new Plataform[88];
@@ -155,6 +156,8 @@ public class Logic implements Runnable{
 		for(int i=0; i < e.size(); i++) {
 			Enemy en =e.get(i);
 			en.paint();
+			new Thread(en).start();
+			//en.RandomMove();
 		}
 	}
 	
@@ -166,8 +169,6 @@ public class Logic implements Runnable{
 			
 			ss.getCp5().show();
 			ss.paint();
-			
-			
 			break;
 			
 		case 1:
@@ -179,22 +180,26 @@ public class Logic implements Runnable{
 			
 		case 2: 
 			is.paint();
-			
 			break;
 			
 		case 3:
-			
 			rs.paint();
-			
-			
 			break;
 		}
+		
 		return screen;
 	}
 	
 	
 	@Override
-	public void run() {
+	public void run() { //para los movimientos de todo
+		
+			for(int a =0; a < p.length; a++) {
+				//if(x1 > x2+w2 || x1+w1 < x2 || y1 > y2+h2 || y1+h1 < y2) {
+					
+				//}
+			}
+		
 		
 		
 	}

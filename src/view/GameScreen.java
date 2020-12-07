@@ -1,10 +1,4 @@
 package view;
-
-import java.util.ArrayList;
-
-import model.BluePoint;
-import model.Enemy;
-import model.Plataform;
 import processing.core.PApplet;
 import processing.core.PImage;
 
