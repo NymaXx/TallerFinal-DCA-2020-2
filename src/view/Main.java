@@ -38,7 +38,7 @@ import processing.core.PImage;
 		 * 3 = Resume Screen
 		 */
 		l = new Logic(this);
-		new Thread(l).start();
+		
 		
 		st = new StartScreen(this);
 		}
@@ -51,6 +51,7 @@ import processing.core.PImage;
 				st.getCp5().hide();
 				}
 			l.paintScreen();
+			new Thread(l).start();
 			
 			
 			

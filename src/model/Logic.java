@@ -24,9 +24,11 @@ public class Logic implements Runnable{
 	private PImage t;
 	private int timeCounter;
 	private int pointCounter;
+	private boolean isCollide;
 	
 	
 	public Logic(PApplet app) {
+		this.isCollide=false;
 		 screen=0;
 		 this.timeCounter=120;
 		 this.pointCounter=0;
@@ -42,7 +44,7 @@ public class Logic implements Runnable{
 		 b = new ArrayList<BluePoint>();
 			//inicializar puntos aleatorios
 			for(int i=0; i < 50; i++) {
-				BluePoint po = new BluePoint((int) app.random(60,3500),(int) app.random(50,610), 3,app);
+				BluePoint po = new BluePoint((int) app.random(60,3500),(int) app.random(50,610), 57,63,app);
 				b.add(po);
 			}
 			
@@ -202,17 +204,24 @@ public class Logic implements Runnable{
 	
 	
 	@Override
-	public void run() { //para los movimientos de todo
+	public void run() { //para las colisiones 
 		
 			for(int a =0; a < p.length; a++) {
-			/*	if(x1 > x2+w2 || x1+w1 < x2 || y1 > y2+h2 || y1+h1 < y2) {
-					
-				}*/
+				Plataform f = p[a];
+				if(f.getPosX() > c.getPosX()+c.getW() || f.getPosX()+f.getW() < c.getPosX() 
+						|| f.getPosY() > c.getPosY()+c.getH() || f.getPosY()+f.getH() < c.getPosY()) {
+					this.isCollide=false;
+				}else {
+					this.isCollide=true;
+					System.out.println("iswork");
+				}
 			}
 		
 		
 		
 	}
+	
+	
 	
 	public int  changeScreen() {
 		
