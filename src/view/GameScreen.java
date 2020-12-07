@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 
 import model.BluePoint;
+import model.Enemy;
 import model.Plataform;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -15,6 +16,7 @@ public class GameScreen implements Runnable {
 	private int speed;
 	private Plataform [] plat;
 	private ArrayList<BluePoint> point;
+	private ArrayList<Enemy> enemy;
 
 	
 	
@@ -121,8 +123,15 @@ public class GameScreen implements Runnable {
 		this.point = new ArrayList<BluePoint>();
 		
 		for(int i=0; i < 60; i++) {
-			BluePoint po = new BluePoint((int) app.random(0,3500),(int) app.random(0,650), 3,app);
+			BluePoint po = new BluePoint((int) app.random(0,3500),(int) app.random(50,610), 3,app);
 			point.add(po);
+		}
+		
+		this.enemy = new ArrayList<Enemy>();
+		
+		for(int i=0; i < 60; i++) {
+			Enemy en = new Enemy((int) app.random(0,3500),(int) app.random(50,610),app);
+			enemy.add(en);
 		}
 	}
 	
@@ -138,6 +147,11 @@ public class GameScreen implements Runnable {
 		for(int i=0; i < point.size(); i++) {
 			BluePoint po =point.get(i);
 			po.paint();
+		}
+		
+		for(int i=0; i < enemy.size(); i++) {
+			Enemy en =enemy.get(i);
+			en.paint();
 		}
 		
 	}

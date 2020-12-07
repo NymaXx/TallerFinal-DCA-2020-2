@@ -19,6 +19,7 @@ import processing.core.PImage;
 		StartScreen st;
 		ResumeScreen res;
 		 Charac c;
+		 InstScreen in;
 		
 		public void settings() {
 			size(1250,680);
@@ -41,6 +42,7 @@ import processing.core.PImage;
 		st = new StartScreen(this);
 		res= new ResumeScreen(this);
 		c = new Charac(0, height-86, 6,10, 54,60, this);
+		in = new InstScreen(this);
 		}
 		
 		
@@ -66,7 +68,8 @@ import processing.core.PImage;
 				break;
 				
 			case 2: 
-				ellipse(50,50,50,50);
+				in.paint();
+				
 				break;
 				
 			case 3:
@@ -99,6 +102,10 @@ import processing.core.PImage;
 				break;
 				
 			case 2:
+				if(in.changeScreen()==1) {
+					screen=1;
+				}
+				
 				break;
 				
 			case 3:
