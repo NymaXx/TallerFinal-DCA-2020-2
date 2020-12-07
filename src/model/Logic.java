@@ -25,10 +25,12 @@ public class Logic implements Runnable{
 	private int timeCounter;
 	private int pointCounter;
 	private boolean isCollide;
+	private boolean isCollidePoint;
 	
 	
 	public Logic(PApplet app) {
 		this.isCollide=false;
+		this.isCollidePoint=false;
 		 screen=0;
 		 this.timeCounter=120;
 		 this.pointCounter=0;
@@ -215,6 +217,25 @@ public class Logic implements Runnable{
 					this.isCollide=true;
 					System.out.println("iswork");
 				}
+				
+				if(this.isCollide==true) {
+					c.setPosY(f.getPosY()-c.getH());
+				}
+			}
+			
+			
+			for(int i = 0; i < b.size(); i++) {
+				BluePoint u = b.get(i);
+				if ( c.getPosX() > u.getPosX() + u.getW() || c.getPosX() + c.getW() < u.getPosX() 
+						|| c.getPosY() > u.getPosY() + u.getH() || c.getPosY()+c.getH() < u.getPosY() ) {
+				    this.isCollidePoint=false;
+				    
+				  }else{
+				  this.isCollidePoint=true;
+			}
+			if(this.isCollidePoint==true) {
+				b.remove(u);
+			}
 			}
 		
 		
