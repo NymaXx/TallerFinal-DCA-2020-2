@@ -1,5 +1,6 @@
 package view;
 import model.Charac;
+import model.Logic;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -20,6 +21,7 @@ import processing.core.PImage;
 		ResumeScreen res;
 		 Charac c;
 		 InstScreen in;
+		 Logic l;
 		
 		public void settings() {
 			size(1250,680);
@@ -29,6 +31,7 @@ import processing.core.PImage;
 		public void setup() {
 		img = loadImage("../images/PlantillaTOTALGAME.png");
 		screen=0;
+		l = new Logic(this);
 		
 		/* screen:
 		 * 0 = Start-Login Screen
@@ -36,85 +39,51 @@ import processing.core.PImage;
 		 * 2 = instructions Screen
 		 * 3 = Resume Screen
 		 */
-		
-		game= new GameScreen(0, this);
-		new Thread(game).start();
 		st = new StartScreen(this);
-		res= new ResumeScreen(this);
-		c = new Charac(0, height-86, 6,10, 54,60, this);
-		in = new InstScreen(this);
 		}
 		
 		
 		public void draw() {
 			background(0);
-			st.getCp5().hide();
-			// game.paint();
+			
+			if(screen != 0) {
+				st.getCp5().hide();
+				}
+			l.paintScreen();
 			
 			
-		switch(screen) {
-			case 0:
-				
-				st.getCp5().show();
-				st.paint();
-				
-				break;
-				
-			case 1:
-				
-				game.paint();
-				c.paint();
-				
-				break;
-				
-			case 2: 
-				in.paint();
-				
-				break;
-				
-			case 3:
-				
-				res.paint();
-				
-				
-				break;
-			}
-		
-		
-			
+
 			textSize(20);
 			fill(255);
 			text("X"+ mouseX + "Y" + mouseY, mouseX, mouseY);
 			
 		}
 		
+		
 		public void mousePressed() {
+
 			switch(screen) {
 			case 0:
-				if(st.changeScreen()==1) {
+				if(l.changeScreen()==1) {
 					screen=1;
 				}
 				
-				if(st.changeScreen()==2) {
+				if(l.changeScreen()==2) {
 					screen=2;	
 				}
-				
 				break;
 				
 			case 2:
-				if(in.changeScreen()==1) {
+				if(l.changeScreen()==1) {
 					screen=1;
 				}
-				
 				break;
 				
 			case 3:
-				if(res.changeScreen()==0) {
+				if(l.changeScreen()==0) {
 					screen=0;
 				}
 				break;
-			
-			
 			}
 		}
 		
