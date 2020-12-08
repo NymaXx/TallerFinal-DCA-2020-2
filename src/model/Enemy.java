@@ -34,9 +34,12 @@ public class Enemy implements Runnable{
 	}
 	
 	public void moveL() {
-		if(app.keyPressed) {
+		if(app.keyCode == PApplet.RIGHT) {
+			if(app.keyPressed) {
 			this.posX-=this.speed;
 			}
+		}
+		
 	}
 
 

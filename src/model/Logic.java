@@ -47,7 +47,7 @@ public class Logic implements Runnable{
 		 ss = new StartScreen(app);
 		 rs = new ResumeScreen(app);
 		 is = new InstScreen(app);
-		 mc = new MainController(app);
+		// mc = new MainController(app);
 	
 		 b = new ArrayList<BluePoint>();
 			//inicializar puntos aleatorios
@@ -303,6 +303,11 @@ public class Logic implements Runnable{
 			} else {
 				isMove=false;
 		}
+			
+			
+			if(c.getPosY() >= app.height) {
+				screen=3;
+			}
 	}
 	
 

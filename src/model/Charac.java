@@ -37,7 +37,7 @@ public class Charac implements Runnable{
 		app.stroke(255);
 		app.image(this.anie, this.posX,this.posY, this.w, this.h);
 		
-		if(this.posY <= app.height-this.h && !app.keyPressed && this.isCollide==true) {
+		if(!app.keyPressed && this.isCollide==true) {
 		this.dir=1;
 		this.posY= this.posY+this.speedCaid*this.dir;
 		}

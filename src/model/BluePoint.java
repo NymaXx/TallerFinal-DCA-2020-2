@@ -35,9 +35,12 @@ public class BluePoint {
 	}
 	
 	public void moveL() {
-		if(app.keyPressed) {
-		this.posX-=this.speed;
+		if(app.keyCode == PApplet.RIGHT) {
+			if(app.keyPressed) {
+			this.posX-=this.speed;
+			}
 		}
+		
 	}
 
 
