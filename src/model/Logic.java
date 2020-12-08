@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+import controller.MainController;
 import processing.core.PApplet;
 import processing.core.PImage;
 import view.GameScreen;
@@ -19,6 +20,8 @@ public class Logic implements Runnable{
 	private ResumeScreen rs;
 	private GameScreen gs;
 	private InstScreen is;
+	private MainController mc;
+	private ArrayList<User> u;
 	private PApplet app;
 	public int screen;
 	private PImage t;
@@ -44,6 +47,7 @@ public class Logic implements Runnable{
 		 ss = new StartScreen(app);
 		 rs = new ResumeScreen(app);
 		 is = new InstScreen(app);
+		 mc = new MainController(app);
 	
 		 b = new ArrayList<BluePoint>();
 			//inicializar puntos aleatorios
@@ -58,7 +62,15 @@ public class Logic implements Runnable{
 				Enemy en = new Enemy((int) app.random(60,3500),(int) app.random(50,610), 30 , 30,app);
 				e.add(en);
 				//new Thread(e.get(i)).start();
+			}	
+			
+		u = new ArrayList<User>();
+			//arrayLisr de Usuarios
+			for(int i=0; i < 7; i++ ) {
+				User us= new User(ss.getName(), ss.getDate(),String.valueOf(this.pointCounter) , String.valueOf(this.timeCounter), app);
+				u.add(us);
 			}
+		
 			
 		 p = new Plataform[88];
 		 	//inicializado manual de las paltaformas
@@ -293,7 +305,7 @@ public class Logic implements Runnable{
 		}
 	}
 	
-	
+
 	
 	public int  changeScreen() {
 		
@@ -301,6 +313,7 @@ public class Logic implements Runnable{
 		case 0:
 			if(ss.changeScreen()==1) {
 				screen=1;
+				
 			}
 			
 			if(ss.changeScreen()==2) {

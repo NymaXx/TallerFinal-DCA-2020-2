@@ -34,7 +34,9 @@ public class Enemy implements Runnable{
 	}
 	
 	public void moveL() {
-		this.posX-=this.speed;
+		if(app.keyPressed) {
+			this.posX-=this.speed;
+			}
 	}
 
 

@@ -92,6 +92,5 @@ import processing.core.PImage;
 		
 		
 		public void keyPressed() {
-			
 		}
 	}
