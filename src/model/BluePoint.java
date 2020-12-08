@@ -18,7 +18,7 @@ public class BluePoint {
 		this.app=app;
 		this.posX=posX;
 		this.posY=posY;
-		this.speed=3;
+		this.speed=1;
 		this.w=w;
 		this.h=h;
 		this.point = app.loadImage("../images/point_1.png");
@@ -33,6 +33,7 @@ public class BluePoint {
 	public void moveR() {
 		this.posX+=this.speed;
 	}
+	
 	public void moveL() {
 		this.posX-=this.speed;
 	}

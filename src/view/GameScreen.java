@@ -14,54 +14,21 @@ public class GameScreen implements Runnable {
 	
 		this.posX=posX;
 		this.app=app;
-		this.speed=3;
+		this.speed=1;
 		this.gameS = app.loadImage("../images/Recurso 2-20.jpg"); 
 		this.t= app.loadImage("../images/TEXTS.png");
 		
 		
 	}
 	
-	
-	public void paint() {
-		app.image(this.t, 0,0);
-		app.image(this.gameS,0,0,3750,680);
-		
-	
-		
-	}
-		
-		
-		
-	
-	
 	@Override
 	public void run() {
-		this.posX+=this.speed;
-	}
-	
-	public void moveToleft() {
-		this.posX-=this.speed;
+		app.image(this.t, 0,0);
+		//se quito el fondo que era negro con degrade para evitar un retraso en todo el juego
+		//app.image(this.gameS,0,0,1250,680);
 	}
 
 
-	public PImage getGameS() {
-		return gameS;
-	}
-
-
-	public void setGameS(PImage gameS) {
-		this.gameS = gameS;
-	}
-
-
-	public PImage getT() {
-		return t;
-	}
-
-
-	public void setT(PImage t) {
-		this.t = t;
-	}
 
 
 	public int getPosX() {

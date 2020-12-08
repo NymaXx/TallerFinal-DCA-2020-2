@@ -17,7 +17,7 @@ public class Enemy implements Runnable{
 		this.h=h;
 		this.posX=posX;
 		this.posY=posY;
-		this.speed=3;
+		this.speed=1;
 		this.app=app;
 		this.enemy= app.loadImage("../images/enemy.png");
 	}
@@ -32,6 +32,7 @@ public class Enemy implements Runnable{
 	public void moveR() {
 		this.posX+=this.speed;
 	}
+	
 	public void moveL() {
 		this.posX-=this.speed;
 	}

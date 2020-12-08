@@ -19,7 +19,7 @@ public class Plataform {
 		this.w=w;
 		this.h=h;
 		this.app=app;
-		this.speed=3;
+		this.speed=1;
 		this.p=app.loadImage("../images/plataform.png");
 		
 	}
@@ -31,10 +31,13 @@ public class Plataform {
 	public void moveR() {
 		this.posX+=this.speed;
 	}
+	
 	public void moveL() {
 		this.posX-=this.speed;
 	}
 
+	
+	
 	public int getPosX() {
 		return posX;
 	}

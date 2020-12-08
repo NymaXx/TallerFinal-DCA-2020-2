@@ -34,11 +34,11 @@ public class Logic implements Runnable{
 		this.isCollidePoint=false;
 		this.isCollideEnem=false;
 		 screen=0;
-		 this.timeCounter=10;
+		 this.timeCounter=30;
 		 this.pointCounter=0;
 		 this.t= app.loadImage("../images/TEXTS.png");
 		 this.app=app;
-		 c = new Charac(0, 200, 14,14, 34,40, app);
+		 c = new Charac(0, 200, 14,14, 24,30, app);
 		 gs = new GameScreen(0, app);
 		 	  new Thread(gs).start();
 		 ss = new StartScreen(app);
@@ -183,8 +183,7 @@ public class Logic implements Runnable{
 			break;
 			
 		case 1:
-			gs.paint();
-			app.image(this.t, 0,0);
+			new Thread(gs).start();
 			c.paint();
 			new Thread(c).start();
 			paintElements();
@@ -206,7 +205,7 @@ public class Logic implements Runnable{
 			app.text(ss.getName(),152,298);
 			app.text(ss.getDate(),897,298);
 			app.text(this.pointCounter, 406,298);
-			app.text(this.timeCounter, 658,298);
+			app.text(120-this.timeCounter, 658,298);
 			break;
 		}
 		
@@ -267,17 +266,32 @@ public class Logic implements Runnable{
 			if(screen==1) {
 			if(app.frameCount% 27 == 0) {
 				this.timeCounter --;
-				if(this.timeCounter <= 0) {
+				if(this.timeCounter <= 0 || b.size()==0) {
 					screen = 3;
 				}
 			}
-			
-			
-			if(b.size()==0) {
-				screen=3;
-				}
-			}
 		}
+			
+			boolean isMove=false;
+			//Movimiento del mapa
+			if(app.keyCode == PApplet.RIGHT && app.keyPressed && c.getPosX() >= app.width*3/4) {
+				for(int i=0; i < e.size(); i++) {
+					for(int d=0; d < b.size(); d++) {
+						for(int w=0; w < p.length; w++) {
+							isMove=true;
+							e.get(i).moveL();
+							b.get(d).moveL();
+							p[w].moveL();
+							
+							System.out.println(b.get(1).getPosX());
+						}
+						
+					}
+				}
+			} else {
+				isMove=false;
+		}
+	}
 	
 	
 	

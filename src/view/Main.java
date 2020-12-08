@@ -38,9 +38,8 @@ import processing.core.PImage;
 		 * 3 = Resume Screen
 		 */
 		l = new Logic(this);
-		
-		
 		st = new StartScreen(this);
+		frameRate(15);
 		}
 		
 		

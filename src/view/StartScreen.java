@@ -69,13 +69,10 @@ public class StartScreen {
 		
 		if(app.mouseX>508 && app.mouseX<741 &&app.mouseY>550 && app.mouseY<598) {
 			screen=1;
-			//registerUser();
-			;
 		}
 		
 		if(app.mouseX>447 && app.mouseX<803 &&app.mouseY>474 && app.mouseY<527) {
 			screen=2;	
-			//registerUser();
 		}
 		
 		return screen;
