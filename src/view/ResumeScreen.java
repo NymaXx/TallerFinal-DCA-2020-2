@@ -16,8 +16,8 @@ public class ResumeScreen {
 		this.app = app;
 		this.res = app.loadImage("../images/resume-20.jpg");
 		
-		this.start = new StartScreen(app);
-		start.getCp5().hide();
+		/*this.start = new StartScreen(app);
+		start.getCp5().hide();*/
 		
 		
 		
@@ -26,9 +26,6 @@ public class ResumeScreen {
 	public void paint() {
 		app.image(this.res,0,0);
 		app.fill(255);
-		app.text("veapos" + start.getName(),152,298);
-		app.text("pilas pacho" + start.getDate(),897,298);
-		System.out.println(start.getName());
 		
 	}
 	

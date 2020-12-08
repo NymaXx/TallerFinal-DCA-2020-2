@@ -26,17 +26,19 @@ public class Logic implements Runnable{
 	private int pointCounter;
 	private boolean isCollide;
 	private boolean isCollidePoint;
+	private boolean isCollideEnem;
 	
 	
 	public Logic(PApplet app) {
 		this.isCollide=false;
 		this.isCollidePoint=false;
+		this.isCollideEnem=false;
 		 screen=0;
-		 this.timeCounter=120;
+		 this.timeCounter=10;
 		 this.pointCounter=0;
 		 this.t= app.loadImage("../images/TEXTS.png");
 		 this.app=app;
-		 c = new Charac(0, 200, 14,14, 44,50, app);
+		 c = new Charac(0, 200, 14,14, 34,40, app);
 		 gs = new GameScreen(0, app);
 		 	  new Thread(gs).start();
 		 ss = new StartScreen(app);
@@ -63,16 +65,16 @@ public class Logic implements Runnable{
 		 	p[0] = new Plataform(0,118,207,29,app);
 			p[1] = new Plataform(-55,283,207,29,app);
 			p[2] = new Plataform(-132,470,207,29,app);
-			p[3] = new Plataform(330,118,207,29,app);
-			p[4] = new Plataform(615,118,207,29,app);
-			p[5] = new Plataform(967,118,207,29,app);
-			p[6] = new Plataform(1413,118,207,29,app);
-			p[7] = new Plataform(1815,118,207,29,app);
-			p[8] = new Plataform(2022,118,207,29,app);
-			p[9] = new Plataform(2724,118,207,29,app);
-			p[10] = new Plataform(2931,118,207,29,app);
-			p[11] = new Plataform(3138,118,207,29,app);
-			p[12] = new Plataform(3536,118,103,29,app);
+			p[3] = new Plataform(330,120,207,29,app);
+			p[4] = new Plataform(615,120,207,29,app);
+			p[5] = new Plataform(967,120,207,29,app);
+			p[6] = new Plataform(1413,120,207,29,app);
+			p[7] = new Plataform(1815,120,207,29,app);
+			p[8] = new Plataform(2022,120,207,29,app);
+			p[9] = new Plataform(2724,120,207,29,app);
+			p[10] = new Plataform(2931,120,207,29,app);
+			p[11] = new Plataform(3138,120,207,29,app);
+			p[12] = new Plataform(3536,120,103,29,app);
 			p[13] = new Plataform(172,191,207,29,app);
 			p[14] = new Plataform(379,191,207,29,app); 
 			p[15] = new Plataform(586,191,207,29,app);
@@ -177,6 +179,7 @@ public class Logic implements Runnable{
 			
 			ss.getCp5().show();
 			ss.paint();
+			ss.registerUser();
 			break;
 			
 		case 1:
@@ -186,8 +189,9 @@ public class Logic implements Runnable{
 			new Thread(c).start();
 			paintElements();
 			
-			app.text(""+ this.pointCounter, 114,30);
-			app.text(""+ this.timeCounter, 279,30);
+			app.text( this.pointCounter, 114,30);
+			app.text(this.timeCounter, 279,30);
+			
 			
 			app.text("X"+ c.getPosX() + "Y" + c.getPosY(), c.getPosX(), c.getPosY() );
 			
@@ -199,6 +203,10 @@ public class Logic implements Runnable{
 			
 		case 3:
 			rs.paint();
+			app.text(ss.getName(),152,298);
+			app.text(ss.getDate(),897,298);
+			app.text(this.pointCounter, 406,298);
+			app.text(this.timeCounter, 658,298);
 			break;
 		}
 		
@@ -236,8 +244,39 @@ public class Logic implements Runnable{
 				
 				if(this.isCollidePoint==true) {
 					b.remove(u);
+					this.pointCounter++;
 					}
 				}
+			
+			for(int i = 0; i < e.size(); i++) {
+				Enemy n = e.get(i);
+				if ( c.getPosX() > n.getPosX() + n.getW() || c.getPosX() + c.getW() < n.getPosX() 
+						|| c.getPosY() > n.getPosY() + n.getH() || c.getPosY()+c.getH() < n.getPosY() ) {
+				    this.isCollideEnem=false;
+				    
+				  }else{
+					  this.isCollideEnem=true;
+				  		}
+				
+				if(this.isCollideEnem==true) {
+					e.remove(n);
+					this.pointCounter--;
+					}
+				}
+			
+			if(screen==1) {
+			if(app.frameCount% 27 == 0) {
+				this.timeCounter --;
+				if(this.timeCounter <= 0) {
+					screen = 3;
+				}
+			}
+			
+			
+			if(b.size()==0) {
+				screen=3;
+				}
+			}
 		}
 	
 	
