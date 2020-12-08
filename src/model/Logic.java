@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import controller.MainController;
+import exception.defeatException;
 import processing.core.PApplet;
 import processing.core.PImage;
 import view.GameScreen;
@@ -304,10 +305,16 @@ public class Logic implements Runnable{
 				isMove=false;
 		}
 			
-			
-			if(c.getPosY() >= app.height) {
+			try {
+				if(c.getPosY() >= app.height) {
+					throw new defeatException("Has caido al vacio! PERDISTE");
+					
+				}
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
 				screen=3;
 			}
+			
 	}
 	
 
