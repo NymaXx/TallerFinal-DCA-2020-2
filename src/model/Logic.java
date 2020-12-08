@@ -36,7 +36,7 @@ public class Logic implements Runnable{
 		 this.pointCounter=0;
 		 this.t= app.loadImage("../images/TEXTS.png");
 		 this.app=app;
-		 c = new Charac(0, 200, 20,19, 54,60, app);
+		 c = new Charac(0, 200, 14,14, 44,50, app);
 		 gs = new GameScreen(0, app);
 		 	  new Thread(gs).start();
 		 ss = new StartScreen(app);
@@ -180,7 +180,6 @@ public class Logic implements Runnable{
 			break;
 			
 		case 1:
-			
 			gs.paint();
 			app.image(this.t, 0,0);
 			c.paint();
@@ -189,6 +188,8 @@ public class Logic implements Runnable{
 			
 			app.text(""+ this.pointCounter, 114,30);
 			app.text(""+ this.timeCounter, 279,30);
+			
+			app.text("X"+ c.getPosX() + "Y" + c.getPosY(), c.getPosX(), c.getPosY() );
 			
 			break;
 			
@@ -210,12 +211,11 @@ public class Logic implements Runnable{
 		
 			for(int a =0; a < p.length; a++) {
 				Plataform f = p[a];
-				if(f.getPosX() > c.getPosX()+c.getW() || f.getPosX()+f.getW() < c.getPosX() 
-						|| f.getPosY() > c.getPosY()+c.getH() || f.getPosY()+f.getH() < c.getPosY()) {
+				if(f.getPosX() > c.getPosX() + c.getW() || f.getPosX() + f.getW() < c.getPosX() 
+						|| f.getPosY() > c.getPosY() + c.getH() || f.getPosY() + f.getH() < c.getPosY()) {
 					this.isCollide=false;
 				}else {
 					this.isCollide=true;
-					System.out.println("iswork");
 				}
 				
 				if(this.isCollide==true) {
@@ -231,16 +231,14 @@ public class Logic implements Runnable{
 				    this.isCollidePoint=false;
 				    
 				  }else{
-				  this.isCollidePoint=true;
-			}
-			if(this.isCollidePoint==true) {
-				b.remove(u);
-			}
-			}
-		
-		
-		
-	}
+					  this.isCollidePoint=true;
+				  		}
+				
+				if(this.isCollidePoint==true) {
+					b.remove(u);
+					}
+				}
+		}
 	
 	
 	

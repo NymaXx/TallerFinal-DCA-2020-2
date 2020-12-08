@@ -24,7 +24,9 @@ public class Charac implements Runnable{
 		this.speedY=speedY;
 		this.dir=1;
 		this.app=app;
-		this.speedCaid=15;
+		this.speedCaid=19;
+		this.h=h;
+		this.w=w;
 		this.isCollide=true;
 		
 		this.anie= app.loadImage("../images/AnnIE.png");
@@ -33,11 +35,11 @@ public class Charac implements Runnable{
 	
 	public void paint() {
 		app.stroke(255);
-		app.image(this.anie, this.posX,this.posY);
+		app.image(this.anie, this.posX,this.posY, this.w, this.h);
 		
-		if(this.posY <= app.height-95 && !app.keyPressed && this.isCollide==true) {
+		if(this.posY <= app.height-this.h && !app.keyPressed && this.isCollide==true) {
 		this.dir=1;
-		this.posY= this.posY+this.speedY*this.dir;
+		this.posY= this.posY+this.speedCaid*this.dir;
 		}
 	}
 	
@@ -49,9 +51,9 @@ public class Charac implements Runnable{
 		 case PApplet.LEFT:
 		 if(app.keyPressed && this.posX > 0 ) {
 				this.posX-=this.speedX;
-				if(this.posY <= app.height-95 && this.isCollide==true) {
+				if(this.posY <= app.height-this.h && this.isCollide==true) {
 				this.dir=1;
-				this.posY= this.posY+this.speedY*this.dir;
+				this.posY= this.posY+this.speedCaid*this.dir;
 				}
 				
 				}
@@ -60,9 +62,9 @@ public class Charac implements Runnable{
 		 case PApplet.RIGHT:
 				if(app.keyPressed && this.posX < app.width*3/4 ) {      
 					this.posX+=this.speedX;
-					if(this.posY <= app.height-95 && this.isCollide==true) {
+					if(this.posY <= app.height-this.h && this.isCollide==true) {
 						this.dir=1;
-						this.posY= this.posY+this.speedY*this.dir;
+						this.posY= this.posY+this.speedCaid*this.dir;
 						}
 					}
 				break;	
@@ -70,7 +72,7 @@ public class Charac implements Runnable{
 		 
 		 if(app.keyPressed && app.keyCode==PApplet.UP) {
 			 this.dir=-1;
-			 this.posY= this.posY + 15 * this.dir;
+			 this.posY= this.posY + this.speedY * this.dir;
 		 }
 		 
 		 
