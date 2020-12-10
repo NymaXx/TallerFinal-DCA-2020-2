@@ -40,7 +40,7 @@ public class Logic implements Runnable{
 		this.isCollidePoint=false;
 		this.isCollideEnem=false;
 		 screen=0;
-		 this.timeCounter=110;
+		 this.timeCounter=0;
 		 this.pointCounter=0;
 		 this.app=app;
 		 c = new Charac(0, 200, 14,14, 24,30, app);
@@ -287,7 +287,7 @@ public class Logic implements Runnable{
 			if(screen==1){
 				if(app.frameCount% 27 == 0) {
 					this.timeCounter ++;
-					if(this.timeCounter >=120 || b.size()==0) {
+					if(this.timeCounter >=100|| b.size()==0) {
 						screen = 3;
 						throw new timeOverException("Se Acabo el tiempo!");
 					}
