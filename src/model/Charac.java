@@ -3,7 +3,7 @@ package model;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Charac implements Runnable{
+public class Charac implements Runnable, ToPaint{
 
 	private int posX;
 	private int posY;

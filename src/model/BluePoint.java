@@ -3,7 +3,7 @@ package model;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class BluePoint {
+public class BluePoint implements ToPaint {
 	
 	
 	private PImage point;

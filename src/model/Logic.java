@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import controller.MainController;
 import exception.defeatException;
+import exception.victoryException;
 import processing.core.PApplet;
 import processing.core.PImage;
 import view.GameScreen;
@@ -25,12 +26,12 @@ public class Logic implements Runnable{
 	private ArrayList<User> u;
 	private PApplet app;
 	public int screen;
-	private PImage t;
 	private int timeCounter;
 	private int pointCounter;
 	private boolean isCollide;
 	private boolean isCollidePoint;
 	private boolean isCollideEnem;
+	private boolean isMove=false;
 	
 	
 	public Logic(PApplet app) {
@@ -40,7 +41,6 @@ public class Logic implements Runnable{
 		 screen=0;
 		 this.timeCounter=30;
 		 this.pointCounter=0;
-		 this.t= app.loadImage("../images/TEXTS.png");
 		 this.app=app;
 		 c = new Charac(0, 200, 14,14, 24,30, app);
 		 gs = new GameScreen(0, app);
@@ -308,6 +308,19 @@ public class Logic implements Runnable{
 			try {
 				if(c.getPosY() >= app.height) {
 					throw new defeatException("Has caido al vacio! PERDISTE");
+				
+					
+				}
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+				System.out.println("entra");
+				screen=3;
+			}
+			
+			
+			try {
+				if(this.pointCounter == 50) {
+					throw new victoryException("Has obtenido todos los puntos de calma!");
 					
 				}
 			}catch(Exception e) {

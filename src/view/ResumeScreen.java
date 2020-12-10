@@ -1,9 +1,10 @@
 package view;
 
+import model.ToPaint;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class ResumeScreen {
+public class ResumeScreen implements ToPaint {
 		
 	
 	private PImage res;

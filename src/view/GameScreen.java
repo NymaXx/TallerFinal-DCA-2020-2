@@ -1,8 +1,9 @@
 package view;
+import model.ToPaint;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class GameScreen implements Runnable {
+public class GameScreen implements Runnable, ToPaint {
 
 	private PImage gameS, t;
 	private PApplet app;

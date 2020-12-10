@@ -1,9 +1,10 @@
 package view;
 
+import model.ToPaint;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class InstScreen {
+public class InstScreen implements ToPaint {
 	private PImage ins;
 	private PApplet app;
 	

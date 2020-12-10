@@ -3,7 +3,7 @@ package model;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Plataform {
+public class Plataform implements ToPaint {
 	
 	private int posX;
 	private int posY;

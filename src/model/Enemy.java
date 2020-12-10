@@ -3,7 +3,7 @@ package model;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Enemy implements Runnable{
+public class Enemy implements Runnable, ToPaint{
 
 	private PImage enemy;
 	private int posX;
