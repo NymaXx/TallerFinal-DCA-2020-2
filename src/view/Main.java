@@ -1,4 +1,6 @@
 package view;
+import exception.defeatException;
+import exception.victoryException;
 import model.Charac;
 import model.Logic;
 import processing.core.PApplet;
@@ -39,7 +41,7 @@ import processing.core.PImage;
 		 */
 		l = new Logic(this);
 		st = new StartScreen(this);
-		frameRate(15);
+		frameRate(20);
 		}
 		
 		
@@ -51,6 +53,27 @@ import processing.core.PImage;
 				}
 			l.paintScreen();
 			new Thread(l).start();
+			
+			
+			
+			/*
+			 * exceptions
+			 */
+			
+			try {
+				l.fall();
+			} catch (defeatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			try {
+				l.win();
+			} catch (victoryException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			
 			

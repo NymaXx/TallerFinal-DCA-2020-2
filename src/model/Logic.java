@@ -39,7 +39,7 @@ public class Logic implements Runnable{
 		this.isCollidePoint=false;
 		this.isCollideEnem=false;
 		 screen=0;
-		 this.timeCounter=30;
+		 this.timeCounter=110;
 		 this.pointCounter=0;
 		 this.app=app;
 		 c = new Charac(0, 200, 14,14, 24,30, app);
@@ -180,6 +180,7 @@ public class Logic implements Runnable{
 		for(int i=0; i < e.size(); i++) {
 			e.get(i).paint();
 			new Thread(e.get(i)).start();
+			
 		}
 	}
 	
@@ -198,15 +199,22 @@ public class Logic implements Runnable{
 		case 1:
 			new Thread(gs).start();
 			c.paint();
-			new Thread(c).start();
 			paintElements();
+			//collidePlataform();
+			collidePoint();
+			collideEnemy();
 			
 			app.text( this.pointCounter, 114,30);
-			app.text(this.timeCounter, 279,30);
+			app.text(this.timeCounter, 279,30);app.text("X"+ c.getPosX() + "Y" + c.getPosY(), c.getPosX(), c.getPosY() );
 			
-			
-			app.text("X"+ c.getPosX() + "Y" + c.getPosY(), c.getPosX(), c.getPosY() );
-			
+			if(screen==1) {
+				if(app.frameCount% 27 == 0) {
+					this.timeCounter ++;
+					if(this.timeCounter >=120 || b.size()==0) {
+						screen = 3;
+					}
+				}
+			}
 			break;
 			
 		case 2: 
@@ -228,78 +236,9 @@ public class Logic implements Runnable{
 	
 	@Override
 	public void run() { //para las colisiones 
-		try {
-			fall();
-		} catch (defeatException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		new Thread(c).start();
+		collidePlataform();
 		
-		try {
-			win();
-		} catch (victoryException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		
-		
-			for(int a =0; a < p.length; a++) {
-				Plataform f = p[a];
-				if(f.getPosX() > c.getPosX() + c.getW() || f.getPosX() + f.getW() < c.getPosX() 
-						|| f.getPosY() > c.getPosY() + c.getH() || f.getPosY() + f.getH() < c.getPosY()) {
-					this.isCollide=false;
-				}else {
-					this.isCollide=true;
-				}
-				
-				if(this.isCollide==true) {
-					c.setPosY(f.getPosY()-c.getH());
-				}
-			}
-			
-			
-			for(int i = 0; i < b.size(); i++) {
-				BluePoint u = b.get(i);
-				if ( c.getPosX() > u.getPosX() + u.getW() || c.getPosX() + c.getW() < u.getPosX() 
-						|| c.getPosY() > u.getPosY() + u.getH() || c.getPosY()+c.getH() < u.getPosY() ) {
-				    this.isCollidePoint=false;
-				    
-				  }else{
-					  this.isCollidePoint=true;
-				  		}
-				
-				if(this.isCollidePoint==true) {
-					b.remove(u);
-					this.pointCounter++;
-					}
-				}
-			
-			for(int i = 0; i < e.size(); i++) {
-				Enemy n = e.get(i);
-				if ( c.getPosX() > n.getPosX() + n.getW() || c.getPosX() + c.getW() < n.getPosX() 
-						|| c.getPosY() > n.getPosY() + n.getH() || c.getPosY()+c.getH() < n.getPosY() ) {
-				    this.isCollideEnem=false;
-				    
-				  }else{
-					  this.isCollideEnem=true;
-				  		}
-				
-				if(this.isCollideEnem==true) {
-					e.remove(n);
-					this.pointCounter--;
-					}
-				}
-			
-			if(screen==1) {
-			if(app.frameCount% 27 == 0) {
-				this.timeCounter --;
-				if(this.timeCounter <= 0 || b.size()==0) {
-					screen = 3;
-				}
-			}
-		}
-			
 			boolean isMove=false;
 			//Movimiento del mapa
 			if(app.keyCode == PApplet.RIGHT && app.keyPressed && c.getPosX() >= app.width*3/4) {
@@ -310,7 +249,7 @@ public class Logic implements Runnable{
 							e.get(i).moveL();
 							b.get(d).moveL();
 							p[w].moveL();
-							System.out.println(b.get(1).getPosX());
+							System.out.println("Syso inamovible");
 						}
 					}
 				}
@@ -330,7 +269,6 @@ public class Logic implements Runnable{
 			}
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
-			System.out.println("entra");
 			screen=3;
 		}
 		return screen;
@@ -338,8 +276,8 @@ public class Logic implements Runnable{
 	
 	public int win() throws victoryException{
 		try {
-			if(this.pointCounter == 50) {
-				throw new victoryException("Has obtenido todos los puntos de calma!");
+			if(this.pointCounter >=25) {
+				throw new victoryException("Has obtenido suficientes puntos de calma!");
 				
 			}
 		}catch(Exception e) {
@@ -350,6 +288,62 @@ public class Logic implements Runnable{
 		return screen;
 		
 	}
+	
+	
+	public void collidePlataform() {
+		for(int a =0; a < p.length; a++) {
+			Plataform f = p[a];
+			if(f.getPosX() > c.getPosX() + c.getW() || f.getPosX() + f.getW() < c.getPosX() 
+					|| f.getPosY() > c.getPosY() + c.getH() || f.getPosY() + f.getH() < c.getPosY()) {
+				this.isCollide=false;
+			}else {
+				this.isCollide=true;
+			}
+			
+			if(this.isCollide==true) {
+				c.setPosY(f.getPosY()-c.getH());
+			}
+		}
+	}
+	
+	
+	public void collideEnemy() {
+		for(int i = 0; i < e.size(); i++) {
+			Enemy n = e.get(i);
+			if ( c.getPosX() > n.getPosX() + n.getW() || c.getPosX() + c.getW() < n.getPosX() 
+					|| c.getPosY() > n.getPosY() + n.getH() || c.getPosY()+c.getH() < n.getPosY() ) {
+			    this.isCollideEnem=false;
+			    
+			  }else{
+				  this.isCollideEnem=true;
+			  		}
+			
+			if(this.isCollideEnem==true) {
+				e.remove(n);
+				this.pointCounter--;
+				}
+		}
+	}
+	
+	
+	public void collidePoint() {
+		for(int i = 0; i < b.size(); i++) {
+			BluePoint u = b.get(i);
+			if ( c.getPosX() > u.getPosX() + u.getW() || c.getPosX() + c.getW() < u.getPosX() 
+					|| c.getPosY() > u.getPosY() + u.getH() || c.getPosY()+c.getH() < u.getPosY() ) {
+			    this.isCollidePoint=false;
+			    
+			  }else{
+				  this.isCollidePoint=true;
+			  		}
+			
+			if(this.isCollidePoint==true) {
+				b.remove(u);
+				this.pointCounter++;
+				}
+			}
+	}
+	
 	
 	public int  changeScreen() {
 		
@@ -363,6 +357,10 @@ public class Logic implements Runnable{
 			if(ss.changeScreen()==2) {
 				screen=2;	
 			}
+			
+			break;
+			
+		case 1:
 			
 			break;
 			

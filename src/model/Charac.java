@@ -2,6 +2,7 @@ package model;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+import processing.core.PVector;
 
 public class Charac implements Runnable, ToPaint{
 
@@ -17,6 +18,10 @@ public class Charac implements Runnable, ToPaint{
 	private PApplet app;
 	private Boolean isCollide;
 	
+	private PVector pos;
+	private PVector vel;
+	private Boolean moveDer, moveIz;
+	
 	public Charac(int posX,int posY,int speedX,int speedY, int w, int h,PApplet app){
 		this.posX=posX;
 		this.posY=posY;
@@ -28,7 +33,6 @@ public class Charac implements Runnable, ToPaint{
 		this.h=h;
 		this.w=w;
 		this.isCollide=true;
-		
 		this.anie= app.loadImage("../images/AnnIE.png");
 		
 	}
@@ -37,10 +41,15 @@ public class Charac implements Runnable, ToPaint{
 		app.stroke(255);
 		app.image(this.anie, this.posX,this.posY, this.w, this.h);
 		
+	
+		
 		if(!app.keyPressed && this.isCollide==true) {
 		this.dir=1;
 		this.posY= this.posY+this.speedCaid*this.dir;
 		}
+		
+		
+		
 	}
 	
 	@Override
@@ -74,15 +83,10 @@ public class Charac implements Runnable, ToPaint{
 			 this.posY= this.posY + this.speedY * this.dir;
 		 }
 		 
-		 
-		/*if(!app.keyPressed) {
-				 this.dir=1;
-			 }*/
-	
-		 
 	 }
 	
-
+	
+	
 	public int getPosX() {
 		return posX;
 	}
