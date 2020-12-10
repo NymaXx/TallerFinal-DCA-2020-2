@@ -2,6 +2,7 @@ package view;
 
 import controlP5.ControlP5;
 import controlP5.Textfield;
+import exception.victoryException;
 import model.ToPaint;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -14,10 +15,12 @@ public class StartScreen implements ToPaint{
 	private ControlP5 cp5;
 	private PApplet app;
 	private PImage start;
+	private int screen;
 	
 	
 	public StartScreen(PApplet app){
 		this.app=app;
+		this.screen=0;
 		
 		this.start= app.loadImage("../images/inicio-20.jpg");
 		
@@ -69,7 +72,9 @@ public class StartScreen implements ToPaint{
 	
 	
 	public int changeScreen() {
-		int screen=0;
+		
+		
+		//int screen=0;
 		boolean  change=false;
 		
 		if(cp5.get(Textfield.class, "Name").getText() != null || cp5.get(Textfield.class, "Date").getText() != null) {
@@ -87,6 +92,23 @@ public class StartScreen implements ToPaint{
 		return screen;
 	}
 	
+	
+	public int noText() throws NullPointerException{
+		
+		try {
+			if(cp5.get(Textfield.class, "Name").getText()==null || cp5.get(Textfield.class, "Date").getText() ==null) {
+				throw new NullPointerException("Por favor por tu nombre");
+				
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			screen=0;
+		}
+		
+		return screen;
+	}
+	
+
 	
 	
 	

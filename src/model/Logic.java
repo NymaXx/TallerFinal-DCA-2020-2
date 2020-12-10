@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import controller.MainController;
 import exception.defeatException;
+import exception.timeOverException;
 import exception.victoryException;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -200,21 +201,13 @@ public class Logic implements Runnable{
 			new Thread(gs).start();
 			c.paint();
 			paintElements();
-			//collidePlataform();
+			collidePlataform();
 			collidePoint();
 			collideEnemy();
 			
 			app.text( this.pointCounter, 114,30);
 			app.text(this.timeCounter, 279,30);app.text("X"+ c.getPosX() + "Y" + c.getPosY(), c.getPosX(), c.getPosY() );
 			
-			if(screen==1) {
-				if(app.frameCount% 27 == 0) {
-					this.timeCounter ++;
-					if(this.timeCounter >=120 || b.size()==0) {
-						screen = 3;
-					}
-				}
-			}
 			break;
 			
 		case 2: 
@@ -235,11 +228,13 @@ public class Logic implements Runnable{
 	
 	
 	@Override
-	public void run() { //para las colisiones 
+	public void run() { 
 		new Thread(c).start();
-		collidePlataform();
+		/*collidePlataform();
+		collideEnemy();
+		collidePoint();*/
 		
-			boolean isMove=false;
+		boolean isMove=false;
 			//Movimiento del mapa
 			if(app.keyCode == PApplet.RIGHT && app.keyPressed && c.getPosX() >= app.width*3/4) {
 				for(int i=0; i < e.size(); i++) {
@@ -255,12 +250,10 @@ public class Logic implements Runnable{
 				}
 			} else {
 				isMove=false;
-		}
-			
-			
-			
+		}		
 			
 	}
+	
 	
 	public int fall () throws defeatException{
 		try {
@@ -287,6 +280,24 @@ public class Logic implements Runnable{
 		
 		return screen;
 		
+	}
+	
+	public int TimeIsOver() throws timeOverException{
+		try {
+			if(screen==1){
+				if(app.frameCount% 27 == 0) {
+					this.timeCounter ++;
+					if(this.timeCounter >=120 || b.size()==0) {
+						screen = 3;
+						throw new timeOverException("Se Acabo el tiempo!");
+					}
+				}
+			}		
+		} catch(Exception e){
+			System.out.println(e.getMessage());
+			screen=3;
+		}
+		return screen;	
 	}
 	
 	

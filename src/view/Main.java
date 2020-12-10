@@ -1,5 +1,6 @@
 package view;
 import exception.defeatException;
+import exception.timeOverException;
 import exception.victoryException;
 import model.Charac;
 import model.Logic;
@@ -74,6 +75,14 @@ import processing.core.PImage;
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			try {
+				l.TimeIsOver();
+			} catch (timeOverException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			
 			
 			
