@@ -21,7 +21,8 @@ public class StartScreen implements ToPaint{
 	public StartScreen(PApplet app){
 		this.app=app;
 		this.screen=0;
-		
+		this.name= null;
+		this.date=null;
 		this.start= app.loadImage("../images/inicio-20.jpg");
 		
 		
@@ -77,7 +78,11 @@ public class StartScreen implements ToPaint{
 		//int screen=0;
 		boolean  change=false;
 		
-		if(cp5.get(Textfield.class, "Name").getText() != null || cp5.get(Textfield.class, "Date").getText() != null) {
+		/*if(cp5.get(Textfield.class, "Name").getText() != null || cp5.get(Textfield.class, "Date").getText() != null) {
+			change=true;
+		}*/
+		
+		if(this.name != null || this.date != null) {
 			change=true;
 		}
 		
