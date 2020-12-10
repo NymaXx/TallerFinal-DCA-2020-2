@@ -228,6 +228,21 @@ public class Logic implements Runnable{
 	
 	@Override
 	public void run() { //para las colisiones 
+		try {
+			fall();
+		} catch (defeatException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			win();
+		} catch (victoryException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 		
 			for(int a =0; a < p.length; a++) {
 				Plataform f = p[a];
@@ -295,42 +310,46 @@ public class Logic implements Runnable{
 							e.get(i).moveL();
 							b.get(d).moveL();
 							p[w].moveL();
-							
 							System.out.println(b.get(1).getPosX());
 						}
-						
 					}
 				}
 			} else {
 				isMove=false;
 		}
 			
-			try {
-				if(c.getPosY() >= app.height) {
-					throw new defeatException("Has caido al vacio! PERDISTE");
-				
-					
-				}
-			}catch(Exception e) {
-				System.out.println(e.getMessage());
-				System.out.println("entra");
-				screen=3;
-			}
 			
 			
-			try {
-				if(this.pointCounter == 50) {
-					throw new victoryException("Has obtenido todos los puntos de calma!");
-					
-				}
-			}catch(Exception e) {
-				System.out.println(e.getMessage());
-				screen=3;
-			}
 			
 	}
 	
-
+	public int fall () throws defeatException{
+		try {
+			if(c.getPosY() >= app.height) {
+				throw new defeatException("Has caido al vacio! PERDISTE");	
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("entra");
+			screen=3;
+		}
+		return screen;
+	}
+	
+	public int win() throws victoryException{
+		try {
+			if(this.pointCounter == 50) {
+				throw new victoryException("Has obtenido todos los puntos de calma!");
+				
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			screen=3;
+		}
+		
+		return screen;
+		
+	}
 	
 	public int  changeScreen() {
 		

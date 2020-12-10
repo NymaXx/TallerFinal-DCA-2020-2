@@ -45,7 +45,6 @@ public class Charac implements Runnable, ToPaint{
 	
 	@Override
 	public void run() {
-		
 		switch(app.keyCode) {
 		 
 		 case PApplet.LEFT:
